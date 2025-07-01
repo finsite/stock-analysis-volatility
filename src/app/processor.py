@@ -14,14 +14,16 @@ logger = setup_logger(__name__)
 
 
 def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
-    """
-    Validate the incoming raw message against the expected schema.
+    """Validate the incoming raw message against the expected schema.
 
-    Parameters:
+    Parameters
+    ----------
         message (dict[str, Any]): The raw message payload.
 
-    Returns:
+    Returns
+    -------
         ValidatedMessage: A validated message object.
+
     """
     logger.debug("🔍 Validating message schema...")
     if not validate_message_schema(message):
@@ -31,17 +33,19 @@ def validate_input_message(message: dict[str, Any]) -> ValidatedMessage:
 
 
 def compute_volatility_signal(message: ValidatedMessage) -> dict[str, Any]:
-    """
-    Compute a volatility signal from the validated input message.
+    """Compute a volatility signal from the validated input message.
 
     This function is a placeholder for actual volatility models,
     such as standard deviation, ATR, or Bollinger bands.
 
-    Parameters:
+    Parameters
+    ----------
         message (ValidatedMessage): The validated message input.
 
-    Returns:
+    Returns
+    -------
         dict[str, Any]: Dictionary with volatility-related data.
+
     """
     logger.debug("🌪️ Computing volatility signal for %s", message["symbol"])
     volatility_score = 1.0  # Placeholder logic
@@ -54,14 +58,16 @@ def compute_volatility_signal(message: ValidatedMessage) -> dict[str, Any]:
 
 
 def process_message(raw_message: dict[str, Any]) -> ValidatedMessage:
-    """
-    Main entry point for processing a single message.
+    """Main entry point for processing a single message.
 
-    Parameters:
+    Parameters
+    ----------
         raw_message (dict[str, Any]): Raw input from the message queue.
 
-    Returns:
+    Returns
+    -------
         ValidatedMessage: Enriched and validated message ready for output.
+
     """
     logger.info("🚦 Processing new message...")
     validated = validate_input_message(raw_message)
